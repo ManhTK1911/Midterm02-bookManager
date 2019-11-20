@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<h1>Detail book</h1>
+<p>
+    <a href="/books">Book list</a>
+</p>
+<form th:object="${book}">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" disabled/></td>
+        </tr>
+        <tr>
+            <td>Date of Purchase:</td>
+            <td><input type="text" th:field="*{dateOfPurchase}" disabled/></td>
+        </tr>
+        <tr>
+            <td>Author:</td>
+            <td><input type="text" th:field="*{author}" disabled/></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{price}" disabled/></td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td th:text="${book.getCategory().getName()}"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

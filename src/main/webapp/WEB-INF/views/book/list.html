@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+</head>
+<body>
+<a href="/create-book">Create new book</a>
+<h1 style="color:#ffc229">Books</h1>
+<p th:if="${issrch}">
+    <a href="/books">Back book list:</a>
+</p>
+<form>
+    Search by name:
+    <input name="s" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+<br>
+<form action="/searchByCategory" onchange="this.submit()">
+    <a>Search By Category:</a>
+    <select name="srch">
+        <option th:each="d:${categories}" th:text="${d.name}" th:value="${d.getId()}" th:selected="(${d.id} == ${srch})"></option>
+    </select>
+</form>
+<br/>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Date of Purchase</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Detail</th>
+    </tr>
+    <th:block th:each="book : ${books}">
+        <tr>
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.dateOfPurchase}">
+            <td th:text="${book.author}">
+            <td th:text="${book.price}">
+            <td th:text="${book.getCategory().getName()}"></td>
+            <td><a th:href="@{/edit-book/__${book.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-book/__${book.id}__ }">Delete</a></td>
+            <td><a th:href="@{/detail-book/__${book.id}__ }">Detail</a></td>
+        </tr>
+    </th:block>
+    <div>
+        <a th:href="@{'/books'(page=${books.number - 1})}" th:if="${books.hasPrevious()}">Previous</a>
+        <span th:text="${books.number + 1}"></span>/<span th:text="${books.totalPages}"></span>
+        <a th:href="@{'/books'(page=${books.number + 1})}" th:if="${books.hasNext()}">Next</a>
+    </div>
+</table>
+</body>
+</html>
