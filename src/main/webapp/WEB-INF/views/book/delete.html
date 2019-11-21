@@ -5,39 +5,41 @@
     <title>Delete book</title>
 </head>
 <body>
-<h1>Delete book</h1>
-<h2>Are you sure?</h2>
+<fieldset style="width: fit-content; height: fit-content">
+<legend><h1 th:text="#{deleteBook}" style="color: red"></h1></legend>
+<h2 th:text="#{sure}"></h2>
 <p>
-    <a href="/books">Book list</a>
+    <a href="/books" th:text="#{bookList}"></a>
 </p>
 <form th:action="@{/delete-book}" th:object="${book}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>Name:</td>
+            <td th:text="#{name}"></td>
             <td th:text="${book.name}"></td>
         </tr>
         <tr>
-            <td>Date of Purchase:</td>
+            <td th:text="#{dop}"></td>
             <td th:text="${book.dateOfPurchase}"></td>
         </tr>
         <tr>
-            <td>Author:</td>
+            <td th:text="#{author}"></td>
             <td th:text="${book.author}"></td>
         </tr>
         <tr>
-            <td>Price:</td>
+            <td th:text="#{price}"></td>
             <td th:text="${book.price}"></td>
         </tr>
         <tr>
-            <td>Category:</td>
+            <td th:text="#{category}"></td>
             <td th:text="${book.getCategory().getName()}"></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Delete book"></td>
+            <td><input type="submit" th:value="#{deleteBook}" style="color: blue"></td>
         </tr>
     </table>
 </form>
+</fieldset>
 </body>
 </html>

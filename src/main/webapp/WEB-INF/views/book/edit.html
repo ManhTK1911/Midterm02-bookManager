@@ -3,9 +3,10 @@
 <head>
 </head>
 <body>
-<h1>Edit Book</h1>
+<fieldset style="width: fit-content; height: fit-content">
+<legend><h1 th:text="#{editBook}" style="color: red"></h1></legend>
 <p>
-    <a href="/books">Book list</a>
+    <a href="/books" th:text="#{bookList}"></a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
@@ -14,23 +15,23 @@
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>Name:</td>
+            <td th:text="#{name}"></td>
             <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
-            <td>Date of purchase:</td>
+            <td th:text="#{dop}"></td>
             <td><input type="text" th:field="*{dateOfPurchase}"/></td>
         </tr>
         <tr>
-            <td>Author:</td>
+            <td th:text="#{author}"></td>
             <td><input type="text" th:field="*{author}"/></td>
         </tr>
         <tr>
-            <td>Price:</td>
+            <td th:text="#{price}"></td>
             <td><input type="text" th:field="*{price}"/></td>
         </tr>
         <tr>
-            <td>Category:</td>
+            <td th:text="#{category}"></td>
             <td>
                 <select th:field="*{category}">
                     <option th:each="p : ${categories}" th:value="${p.id}" th:text="${p.name}"></option>
@@ -39,9 +40,10 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Update book"></td>
+            <td><input type="submit" th:value="#{update}" style="color: blue"></td>
         </tr>
     </table>
 </form>
+</fieldset>
 </body>
 </html>

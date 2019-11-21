@@ -4,45 +4,71 @@
     <meta charset="UTF-8">
     <title>Book</title>
 </head>
-<body>
+<style>
+    table {
+        margin: auto;
+        border: 2px solid black;
+        margin-left: 30px;
+    }
+    tr {
+        border: 2px solid black;
+        margin: auto;
+        padding: 15px;
+    }
+    td {
+        margin: auto;
+        border: 2px solid black;
+        text-align: center;
+        padding: 15px;
+        font-weight: bolder;
+    }
+    th {
+        color: chocolate;
+    }
+    form{
+        margin-top: 15px;
+    }
 
+    #so {
+        margin-left: 43px
+    }
+</style>
+<body>
+<fieldset style="width: fit-content; height: fit-content">
+<legend><h1 style="color:#ff4e06"><a th:text="#{book}"></a></h1></legend>
 <form onchange="this.submit()">
     <select name="lang">
-        <option value="" >...</option>
+        <option value="" >__Language__</option>
         <option value="en" >English</option>
         <option value="vi" >VietNam</option>
     </select>
 </form>
-
-<p th:text="${param.lang}"></p>
-<br>
+<p th:text="${param.lang}"></p><br>
 <button><a href="/create-book" th:text="#{createBook}"></a></button>
 
-<h1 style="color:#ffc229"><a th:text="#{book}"></a></h1>
 <p th:if="${issrch}">
-    <a href="/books">Back book list:</a>
+    <a href="/books" th:text="#{back}"></a>
 </p>
-<p th:if="${srch}">
-    <a href="/books">Back book list:</a>
-</p>
-<form>
-    <a th:text="#{searchName}"></a>
-    <input name="s" type="text"/>
-    <input type="submit" th:value="#{search}"/>
-</form>
+<!--<p th:if="${searchCategory}">-->
+<!--    <a href="/books">Back book list:</a>-->
+<!--</p>-->
+<!--<form>-->
+<!--    <a th:text="#{searchName}"></a>-->
+<!--    <input name="s" type="text"/>-->
+<!--    <input type="submit" th:value="#{search}"/>-->
+<!--</form>-->
 <br>
 
 <form action="/searchByCategory" onchange="this.submit()">
-    <a th:text="#{searchCategory}"></a>
-    <select name="srch">
-        <option value="noo" th:selected="(${categories} == 'noo')">All</option>
-        <option th:each="d:${categories}" th:text="${d.name}" th:value="${d.getId()}" th:selected="(${d.id} == ${srch})"></option>
+    <a th:text="#{searchCategory}" style="color: darkred"></a>
+    <select name="searchCategory">
+        <option value="-1">All</option>
+        <option th:each="c:${categories}" th:text="${c.name}" th:value="${c.getId()}" th:selected="(${c.id} == ${searchCategory})"></option>
     </select>
 </form>
-<br>
 <form action="/sortByPrice" onchange="this.submit()">
-    <a th:text="#{sortPrice}"></a>
-    <select name="sortDirection2">
+    <a th:text="#{sortPrice}" style="color: darkred"></a>
+    <select id="so" name="sortDirection2">
         <option value="no" th:selected="(${sortDirection2} == 'no')">All</option>
         <option value="asc" th:selected="(${sortDirection2} == 'asc')">ASC</option>
         <option value="desc" th:selected="(${sortDirection2} == 'desc')">DESC</option>
@@ -78,5 +104,6 @@
         <a th:href="@{'/books'(page=${books.number + 1})}" th:if="${books.hasNext()}" th:text="#{next}"></a>
     </div>
 </table>
+</fieldset>
 </body>
 </html>

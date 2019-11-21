@@ -5,7 +5,8 @@
     <title>Create book</title>
 </head>
 <body>
-<h1 th:text="#{createBook}"></h1>
+<fieldset style="width: fit-content; height: fit-content">
+<legend><h1 th:text="#{createBook}" style="color: red"></h1><legend>
 <p>
     <a href="/books" th:text="#{bookList}"></a>
 </p>
@@ -40,9 +41,10 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" th:value="#{crBook}"></td>
+            <td><input type="submit" th:value="#{crBook}" style="color: blue"></td>
         </tr>
     </table>
 </form>
+</fieldset>
 </body>
 </html>

@@ -60,12 +60,18 @@ public class BookController {
     }
 
     @GetMapping("/searchByCategory")
-    public ModelAndView getBookByCategory(@RequestParam("srch") String search, @PageableDefault(size = 5) Pageable pageable) {
-        Category category = categoryService.findById(Long.parseLong(search));
-        Page<Book> books = bookService.findAllByCategory(category, pageable);
+    public ModelAndView getBookByCategory(@RequestParam("searchCategory") Long searchCategory, @PageableDefault(size = 5) Pageable pageable) {
+        Page<Book> books;
+        if(searchCategory == -1){
+            books = bookService.findAll(pageable);
+        }else{
+            Category searcCategory = categoryService.findById(searchCategory);
+            books = bookService.findAllByCategory(searcCategory,pageable);
+        }
         ModelAndView modelAndView = new ModelAndView("/book/list");
-        modelAndView.addObject("books", books);
-        modelAndView.addObject("srch", search);
+        modelAndView.addObject("books",books);
+        modelAndView.addObject("searchCategory",searchCategory);
+        modelAndView.addObject("categories", categories());
         return modelAndView;
     }
 

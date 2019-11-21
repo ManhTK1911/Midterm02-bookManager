@@ -14,7 +14,7 @@ public class Book {
     private String name;
     private String dateOfPurchase;
     private String author;
-    private Long price;
+    private double price;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
@@ -32,7 +32,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String name, String dateOfPurchase, String author, Long price) {
+    public Book(String name, String dateOfPurchase, String author, double price) {
         this.name = name;
         this.dateOfPurchase = dateOfPurchase;
         this.author = author;
@@ -71,11 +71,11 @@ public class Book {
         this.author = author;
     }
 
-    public Long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }
