@@ -5,34 +5,60 @@
     <title>Book</title>
 </head>
 <body>
-<a href="/create-book">Create new book</a>
-<h1 style="color:#ffc229">Books</h1>
+
+<form onchange="this.submit()">
+    <select name="lang">
+        <option value="" >...</option>
+        <option value="en" >English</option>
+        <option value="vi" >VietNam</option>
+    </select>
+</form>
+
+<p th:text="${param.lang}"></p>
+<br>
+<button><a href="/create-book" th:text="#{createBook}"></a></button>
+
+<h1 style="color:#ffc229"><a th:text="#{book}"></a></h1>
 <p th:if="${issrch}">
     <a href="/books">Back book list:</a>
 </p>
+<p th:if="${srch}">
+    <a href="/books">Back book list:</a>
+</p>
 <form>
-    Search by name:
+    <a th:text="#{searchName}"></a>
     <input name="s" type="text"/>
-    <input type="submit" value="Search"/>
+    <input type="submit" th:value="#{search}"/>
 </form>
 <br>
+
 <form action="/searchByCategory" onchange="this.submit()">
-    <a>Search By Category:</a>
+    <a th:text="#{searchCategory}"></a>
     <select name="srch">
+        <option value="noo" th:selected="(${categories} == 'noo')">All</option>
         <option th:each="d:${categories}" th:text="${d.name}" th:value="${d.getId()}" th:selected="(${d.id} == ${srch})"></option>
+    </select>
+</form>
+<br>
+<form action="/sortByPrice" onchange="this.submit()">
+    <a th:text="#{sortPrice}"></a>
+    <select name="sortDirection2">
+        <option value="no" th:selected="(${sortDirection2} == 'no')">All</option>
+        <option value="asc" th:selected="(${sortDirection2} == 'asc')">ASC</option>
+        <option value="desc" th:selected="(${sortDirection2} == 'desc')">DESC</option>
     </select>
 </form>
 <br/>
 <table border="1">
     <tr>
-        <th>Name</th>
-        <th>Date of Purchase</th>
-        <th>Author</th>
-        <th>Price</th>
-        <th>Category</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Detail</th>
+        <th th:text="#{name}"></th>
+        <th th:text="#{dop}"></th>
+        <th th:text="#{author}"></th>
+        <th th:text="#{price}"></th>
+        <th th:text="#{category}"></th>
+        <th th:text="#{edit}"></th>
+        <th th:text="#{delete}"></th>
+        <th th:text="#{detail}"></th>
     </tr>
     <th:block th:each="book : ${books}">
         <tr>
@@ -41,15 +67,15 @@
             <td th:text="${book.author}">
             <td th:text="${book.price}">
             <td th:text="${book.getCategory().getName()}"></td>
-            <td><a th:href="@{/edit-book/__${book.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-book/__${book.id}__ }">Delete</a></td>
-            <td><a th:href="@{/detail-book/__${book.id}__ }">Detail</a></td>
+            <td><a th:href="@{/edit-book/__${book.id}__ }" th:text="#{edit}"></a></td>
+            <td><a th:href="@{/delete-book/__${book.id}__ }" th:text="#{delete}"></a></td>
+            <td><a th:href="@{/detail-book/__${book.id}__ }" th:text="#{detail}"></a></td>
         </tr>
     </th:block>
     <div>
-        <a th:href="@{'/books'(page=${books.number - 1})}" th:if="${books.hasPrevious()}">Previous</a>
+        <a th:href="@{'/books'(page=${books.number - 1})}" th:if="${books.hasPrevious()}" th:text="#{pre}"></a>
         <span th:text="${books.number + 1}"></span>/<span th:text="${books.totalPages}"></span>
-        <a th:href="@{'/books'(page=${books.number + 1})}" th:if="${books.hasNext()}">Next</a>
+        <a th:href="@{'/books'(page=${books.number + 1})}" th:if="${books.hasNext()}" th:text="#{next}"></a>
     </div>
 </table>
 </body>

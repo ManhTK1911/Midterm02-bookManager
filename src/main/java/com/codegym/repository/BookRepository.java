@@ -10,4 +10,7 @@ public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
         Iterable<Book> findAllByCategory(Category category);
         Page<Book> findAllByNameContaining(String name, Pageable pageable);
         Page<Book> findAllByCategory(Category category, Pageable pageable);
+        Page<Book> findAllByOrderByPriceAsc(Pageable pageable);
+        Page<Book> findAllByOrderByPriceDesc(Pageable pageable);
+
 }

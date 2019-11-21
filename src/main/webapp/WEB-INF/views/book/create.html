@@ -5,9 +5,9 @@
     <title>Create book</title>
 </head>
 <body>
-<h1>Create book</h1>
+<h1 th:text="#{createBook}"></h1>
 <p>
-    <a href="/books">book list</a>
+    <a href="/books" th:text="#{bookList}"></a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
@@ -15,23 +15,23 @@
 <form th:action="@{/create-book}" th:object="${book}" method="post">
     <table>
         <tr>
-            <td>Name:</td>
+            <td th:text="#{name}"></td>
             <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
-            <td>Date of Purchase:</td>
+            <td th:text="#{dop}"></td>
             <td><input type="text" th:field="*{dateOfPurchase}"/></td>
         </tr>
         <tr>
-            <td>Author:</td>
+            <td th:text="#{author}"></td>
             <td><input type="text" th:field="*{author}"/></td>
         </tr>
         <tr>
-            <td>Price:</td>
+            <td th:text="#{price}"></td>
             <td><input type="text" th:field="*{price}"/></td>
         </tr>
         <tr>
-            <td>Category:</td>
+            <td th:text="#{category}"></td>
             <td>
                 <select th:field="*{category}">
                     <option th:each="p : ${categories}" th:value="${p.id}" th:text="${p.name}"></option>
@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Create book"></td>
+            <td><input type="submit" th:value="#{crBook}"></td>
         </tr>
     </table>
 </form>

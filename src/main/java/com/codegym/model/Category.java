@@ -1,5 +1,7 @@
 package com.codegym.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,7 +15,9 @@ public class Category {
     private String name;
     private String description;
 
-    @OneToMany(targetEntity = Book.class)
+
+    @JsonManagedReference
+    @OneToMany(targetEntity = Book.class ,fetch = FetchType.EAGER)
     private List<Book> books;
 
     public Category(){}

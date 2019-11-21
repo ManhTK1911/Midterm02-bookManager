@@ -10,6 +10,8 @@ public interface BookService {
     Page<Book> findAll(Pageable pageable);
     Page<Book> findAllByNameContaining(String name, Pageable pageable);
     Page<Book> findAllByCategory(Category category, Pageable pageable);
+    Page<Book> findAllByOrderByPriceAsc(Pageable pageable);
+    Page<Book> findAllByOrderByPriceDesc(Pageable pageable);
     Book findById(Long id);
     void save(Book book);
     void remove(Long id);

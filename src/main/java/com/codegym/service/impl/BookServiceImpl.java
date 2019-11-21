@@ -29,6 +29,16 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Page<Book> findAllByOrderByPriceAsc(Pageable pageable) {
+        return findAllByOrderByPriceAsc(pageable);
+    }
+
+    @Override
+    public Page<Book> findAllByOrderByPriceDesc(Pageable pageable) {
+        return findAllByOrderByPriceDesc(pageable);
+    }
+
+    @Override
     public Book findById(Long id) {
         return bookRepository.findOne(id);
     }
