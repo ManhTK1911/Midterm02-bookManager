@@ -5,23 +5,25 @@
     <title>Categories</title>
 </head>
 <body>
-<a href="/create-category">Create new category</a>
-<h1 style="color:orangered">Categories</h1>
-<table border="1">
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    <th:block th:each="categories: ${category}">
+<fieldset style="width: fit-content; height: fit-content">
+    <legend><h1 style="color:orangered">Categories</h1></legend>
+    <button><a href="/create-category">Create new category</a></button><br>
+    <table border="1">
         <tr>
-            <td th:text="${categories.name}"></td>
-            <td th:text="${categories.description}"></td>
-            <td><a th:href="@{/edit-category/__${categories.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-category/__${categories.id}__ }">Delete</a></td>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
-    </th:block>
-</table>
+        <th:block th:each="categories: ${category}">
+            <tr>
+                <td th:text="${categories.name}"></td>
+                <td th:text="${categories.description}"></td>
+                <td><a th:href="@{/edit-category/__${categories.id}__ }">Edit</a></td>
+                <td><a th:href="@{/delete-category/__${categories.id}__ }">Delete</a></td>
+            </tr>
+        </th:block>
+    </table>
+</fieldset>
 </body>
 </html>

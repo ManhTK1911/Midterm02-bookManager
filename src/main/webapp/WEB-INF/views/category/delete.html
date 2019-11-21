@@ -5,10 +5,11 @@
     <title>Delete category</title>
 </head>
 <body>
-<h1>Delete category</h1>
+<fieldset style="width: fit-content; height: fit-content">
+    <legend><h1 style="color: red">Delete category</h1></legend>
 <h2>Are you sure?</h2>
 <p>
-    <a href="/categories">Category list</a>
+    <button><a href="/categories">Category list</a></button>
 </p>
 <form th:action="@{/delete-category}" th:object="${category}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
@@ -23,9 +24,10 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Delete category"></td>
+            <td><input type="submit" value="Delete category" style="color: blue"></td>
         </tr>
     </table>
 </form>
+</fieldset>
 </body>
 </html>

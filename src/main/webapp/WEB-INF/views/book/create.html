@@ -8,7 +8,7 @@
 <fieldset style="width: fit-content; height: fit-content">
 <legend><h1 th:text="#{createBook}" style="color: red"></h1><legend>
 <p>
-    <a href="/books" th:text="#{bookList}"></a>
+    <button><a href="/books" th:text="#{bookList}"></a></button>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>

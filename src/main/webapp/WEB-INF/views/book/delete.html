@@ -9,7 +9,7 @@
 <legend><h1 th:text="#{deleteBook}" style="color: red"></h1></legend>
 <h2 th:text="#{sure}"></h2>
 <p>
-    <a href="/books" th:text="#{bookList}"></a>
+    <button><a href="/books" th:text="#{bookList}"></a></button>
 </p>
 <form th:action="@{/delete-book}" th:object="${book}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
